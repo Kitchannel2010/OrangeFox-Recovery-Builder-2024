@@ -113,8 +113,6 @@ jobs:
           ls -R .
 
           echo "Listing device/samsung directory:"
-          ls -R device/samsung
-
           echo "Checking a71 directory exists:"
           if [ -d "device/samsung/a71" ]; then
             echo "✅ device/samsung/a71 exists"
