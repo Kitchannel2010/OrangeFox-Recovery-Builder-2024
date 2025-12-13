@@ -106,7 +106,42 @@ jobs:
         git clone ${{ github.event.inputs.DEVICE_TREE }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
         cd ${{ github.event.inputs.DEVICE_PATH }}
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
+        
+    - name: List device tree directory
+      run: |
+          echo "Listing root tree:"
+          ls -R .
 
+          echo "Listing device/samsung directory:"
+          ls -R device/samsung
+
+          echo "Checking a71 directory exists:"
+          if [ -d "device/samsung/a71" ]; then
+            echo "✅ device/samsung/a71 exists"
+          else
+            echo "❌ device/samsung/a71 NOT FOUND"
+          fi
+
+          echo "Checking AndroidProducts.mk file:"
+          if [ -f "device/samsung/a71/AndroidProducts.mk" ]; then
+            echo "✅ AndroidProducts.mk FOUND"
+          else
+            echo "❌ AndroidProducts.mk NOT FOUND"
+          fi
+
+          echo "Checking twrp_a71.mk file:"
+          if [ -f "device/samsung/a71/twrp_a71.mk" ]; then
+            echo "✅ twrp_a71.mk FOUND"
+          else
+            echo "❌ twrp_a71.mk NOT FOUND"
+          fi
+
+          echo "Checking BoardConfig.mk file:"
+          if [ -f "device/samsung/a71/BoardConfig.mk" ]; then
+            echo "✅ BoardConfig.mk FOUND"
+          else
+            echo "❌ BoardConfig.mk NOT FOUND"
+          fi
     - name: Check Manifest Branch
       uses: haya14busa/action-cond@v1
       id: fox_branch
