@@ -110,8 +110,6 @@ jobs:
     - name: List device tree directory
       run: |
           echo "Listing root tree:"
-          ls -R .
-
           echo "Listing device/samsung directory:"
           echo "Checking a71 directory exists:"
           if [ -d "device/samsung/a71" ]; then
